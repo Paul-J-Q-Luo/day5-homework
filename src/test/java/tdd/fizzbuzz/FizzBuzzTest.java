@@ -44,4 +44,14 @@ public class FizzBuzzTest {
 
         assertEquals("Buzz", result);
     }
+
+    @Test
+    public void should_return_FizzBuzz_when_input_15() {
+        int order = 15;
+        FizzBuzz fizzBuzz = new FizzBuzz();
+
+        String result = fizzBuzz.countOff(order);
+
+        assertEquals("FizzBuzz", result);
+    }
 }
