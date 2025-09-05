@@ -3,6 +3,12 @@ package tdd.fizzbuzz;
 import java.util.Objects;
 
 public class MarsRover {
+    public static final String L_COMMAND = "L";
+    public static final String R_COMMAND = "R";
+    public static final String NORTH = "N";
+    public static final String WEST = "W";
+    public static final String SOUTH = "S";
+    public static final String EAST = "E";
     private int x;
     private int y;
     private String direction;
@@ -36,35 +42,26 @@ public class MarsRover {
     }
 
     public void executeCommand(String command) {
-        if (Objects.equals(command, "L")) {
-            if (Objects.equals(direction, "N")) {
-                direction = "W";
-            } else if (Objects.equals(direction, "S")) {
-                direction = "E";
-            } else if (Objects.equals(direction, "E")) {
-                direction = "N";
-            } else {
-                direction = "S";
-            }
-        } else if (Objects.equals(command, "R")) {
-            if (Objects.equals(direction, "N")) {
-                direction = "E";
-            } else if (Objects.equals(direction, "S")) {
-                direction = "W";
-            } else if (Objects.equals(direction, "E")) {
-                direction = "S";
-            } else {
-                direction = "N";
-            }
-        } else {
-            if (Objects.equals(direction, "N")) {
-                ++y;
-            } else if (Objects.equals(direction, "E")) {
-                ++x;
-            } else if (Objects.equals(direction, "S")) {
-                --y;
-            } else {
-                --x;
+        switch (command) {
+            case L_COMMAND -> direction = switch (direction) {
+                case NORTH -> WEST;
+                case SOUTH -> EAST;
+                case EAST -> NORTH;
+                default -> SOUTH;
+            };
+            case R_COMMAND -> direction = switch (direction) {
+                case NORTH -> EAST;
+                case SOUTH -> WEST;
+                case EAST -> SOUTH;
+                default -> NORTH;
+            };
+            default -> {
+                switch (direction) {
+                    case NORTH -> ++y;
+                    case EAST -> ++x;
+                    case SOUTH -> --y;
+                    default -> --x;
+                }
             }
         }
     }
