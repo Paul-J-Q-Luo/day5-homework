@@ -1,7 +1,5 @@
 package tdd.fizzbuzz;
 
-import java.util.Objects;
-
 public class MarsRover {
     public static final String L_COMMAND = "L";
     public static final String R_COMMAND = "R";
@@ -42,27 +40,41 @@ public class MarsRover {
     }
 
     public void executeCommand(String command) {
-        switch (command) {
-            case L_COMMAND -> direction = switch (direction) {
-                case NORTH -> WEST;
-                case SOUTH -> EAST;
-                case EAST -> NORTH;
-                default -> SOUTH;
-            };
-            case R_COMMAND -> direction = switch (direction) {
-                case NORTH -> EAST;
-                case SOUTH -> WEST;
-                case EAST -> SOUTH;
-                default -> NORTH;
-            };
-            default -> {
-                switch (direction) {
-                    case NORTH -> ++y;
-                    case EAST -> ++x;
-                    case SOUTH -> --y;
-                    default -> --x;
-                }
-            }
+        getCommandExecutor(command).execute();
+    }
+
+    private CommandExecutor getCommandExecutor(String command) {
+        return switch (command) {
+            case L_COMMAND -> this::turnLeft;
+            case R_COMMAND -> this::turnRight;
+            default -> this::moveForward;
+        };
+    }
+
+    private void turnLeft() {
+        direction = switch (direction) {
+            case NORTH -> WEST;
+            case SOUTH -> EAST;
+            case EAST -> NORTH;
+            default -> SOUTH;
+        };
+    }
+
+    private void turnRight() {
+        direction = switch (direction) {
+            case NORTH -> EAST;
+            case SOUTH -> WEST;
+            case EAST -> SOUTH;
+            default -> NORTH;
+        };
+    }
+
+    private void moveForward() {
+        switch (direction) {
+            case NORTH -> ++y;
+            case EAST -> ++x;
+            case SOUTH -> --y;
+            default -> --x;
         }
     }
 }
