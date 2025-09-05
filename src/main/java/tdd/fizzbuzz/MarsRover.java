@@ -36,22 +36,30 @@ public class MarsRover {
     }
 
     public void executeCommand(String command) {
-        if (Objects.equals(direction, "N") && Objects.equals(command, "L")) {
-            direction = "W";
-        } else if (Objects.equals(direction, "N") && Objects.equals(command, "R")) {
-            direction = "E";
-        } else if (Objects.equals(direction, "S") && Objects.equals(command, "L")) {
-            direction = "E";
-        } else if (Objects.equals(direction, "S") && Objects.equals(command, "R")) {
-            direction = "W";
-        } else if (Objects.equals(direction, "E") && Objects.equals(command, "L")) {
-            direction = "N";
-        } else if (Objects.equals(direction, "E") && Objects.equals(command, "R")) {
-            direction = "S";
-        } else if (Objects.equals(direction, "W") && Objects.equals(command, "L")) {
-            direction = "S";
-        } else if (Objects.equals(direction, "W") && Objects.equals(command, "R")) {
-            direction = "N";
+        if (Objects.equals(command, "L")) {
+            if (Objects.equals(direction, "N")) {
+                direction = "W";
+            } else if (Objects.equals(direction, "S")) {
+                direction = "E";
+            } else if (Objects.equals(direction, "E")) {
+                direction = "N";
+            } else {
+                direction = "S";
+            }
+        } else if (Objects.equals(command, "R")) {
+            if (Objects.equals(direction, "N")) {
+                direction = "E";
+            } else if (Objects.equals(direction, "S")) {
+                direction = "W";
+            } else if (Objects.equals(direction, "E")) {
+                direction = "S";
+            } else {
+                direction = "N";
+            }
+        } else {
+            if (Objects.equals(direction, "N")) {
+                ++y;
+            }
         }
     }
 }

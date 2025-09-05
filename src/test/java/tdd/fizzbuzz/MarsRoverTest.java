@@ -125,4 +125,19 @@ class MarsRoverTest {
         assertEquals(0, marsRover.getY());
         assertEquals("N", marsRover.getDirection());
     }
+
+    @Test
+    public void should_return_location_is_N_and_x_is_0_and_y_is_1_when_given_direction_is_N_and_command_is_M_and_x_is_0_and_y_is_0() {
+        String direction = "N";
+        String command = "M";
+        int x = 0;
+        int y = 0;
+        MarsRover marsRover = new MarsRover(x, y, direction);
+
+        marsRover.executeCommand(command);
+
+        assertEquals(0, marsRover.getX());
+        assertEquals(1, marsRover.getY());
+        assertEquals("N", marsRover.getDirection());
+    }
 }
