@@ -1,5 +1,7 @@
 package tdd.fizzbuzz;
 
+import java.util.Objects;
+
 public class MarsRover {
     private int x;
     private int y;
@@ -30,11 +32,14 @@ public class MarsRover {
     }
 
     public MarsRover(int x, int y, String direction) {
-
+        this.direction = direction;
     }
 
     public void executeCommand(String command) {
-        y++;
-        direction = "N";
+        if(Objects.equals(direction, "N") && Objects.equals(command, "L")) {
+            direction = "W";
+        } else if(Objects.equals(direction, "N") && Objects.equals(command, "R")) {
+            direction = "E";
+        }
     }
 }
