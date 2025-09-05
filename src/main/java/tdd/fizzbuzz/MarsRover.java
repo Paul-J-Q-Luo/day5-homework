@@ -3,7 +3,15 @@ package tdd.fizzbuzz;
 public class MarsRover {
     private int x;
     private int y;
+    private String location;
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public int getY() {
         return y;
