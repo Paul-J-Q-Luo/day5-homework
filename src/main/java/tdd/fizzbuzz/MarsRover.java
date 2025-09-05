@@ -36,14 +36,16 @@ public class MarsRover {
     }
 
     public void executeCommand(String command) {
-        if(Objects.equals(direction, "N") && Objects.equals(command, "L")) {
+        if (Objects.equals(direction, "N") && Objects.equals(command, "L")) {
             direction = "W";
-        } else if(Objects.equals(direction, "N") && Objects.equals(command, "R")) {
+        } else if (Objects.equals(direction, "N") && Objects.equals(command, "R")) {
             direction = "E";
-        } else if(Objects.equals(direction, "S") && Objects.equals(command, "L")) {
+        } else if (Objects.equals(direction, "S") && Objects.equals(command, "L")) {
             direction = "E";
-        } else if(Objects.equals(direction, "S") && Objects.equals(command, "R")) {
+        } else if (Objects.equals(direction, "S") && Objects.equals(command, "R")) {
             direction = "W";
+        } else if (Objects.equals(direction, "E") && Objects.equals(command, "L")) {
+            direction = "N";
         }
     }
 }
