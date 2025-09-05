@@ -2,19 +2,15 @@ package tdd.fizzbuzz;
 
 public class FizzBuzz {
 
-    public static final int FIZZBUZZ_NUMBER = 15;
-    public static final int FIZZ_NUMBER = 3;
-    public static final int BUZZ_NUMBER = 5;
-
     public String countOff(int order) {
-        if(order % FIZZBUZZ_NUMBER == 0) {
-            return "FizzBuzz";
+        if(order % FizzBuzzType.FIZZBUZZ.getNumber() == 0) {
+            return FizzBuzzType.FIZZBUZZ.getCountOff();
         }
-        if(order % FIZZ_NUMBER == 0) {
-            return "Fizz";
+        if(order % FizzBuzzType.FIZZ.getNumber() == 0) {
+            return FizzBuzzType.FIZZ.getCountOff();
         }
-        if(order % BUZZ_NUMBER == 0) {
-            return "Buzz";
+        if(order % FizzBuzzType.BUZZ.getNumber() == 0) {
+            return FizzBuzzType.BUZZ.getCountOff();
         }
         return String.valueOf(order);
     }
