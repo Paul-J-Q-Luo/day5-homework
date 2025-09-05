@@ -61,6 +61,10 @@ public class MarsRover {
                 ++y;
             } else if (Objects.equals(direction, "E")) {
                 ++x;
+            } else if (Objects.equals(direction, "S")) {
+                --y;
+            } else {
+                --x;
             }
         }
     }
