@@ -3,14 +3,14 @@ package tdd.fizzbuzz;
 public class MarsRover {
     private int x;
     private int y;
-    private String location;
+    private String direction;
 
-    public String getLocation() {
-        return location;
+    public String getDirection() {
+        return direction;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 
     public int getY() {
@@ -29,11 +29,12 @@ public class MarsRover {
         this.x = x;
     }
 
-    public MarsRover(int x, int y, String location) {
+    public MarsRover(int x, int y, String direction) {
 
     }
 
     public void executeCommand(String command) {
-
+        y++;
+        direction = "N";
     }
 }
