@@ -40,10 +40,10 @@ public class MarsRover {
     }
 
     public void executeCommand(String command) {
-        getCommandExecutor(command).execute();
+        createCommand(command).execute();
     }
 
-    private CommandExecutor getCommandExecutor(String command) {
+    private CommandExecutor createCommand(String command) {
         return switch (command) {
             case L_COMMAND -> this::turnLeft;
             case R_COMMAND -> this::turnRight;
