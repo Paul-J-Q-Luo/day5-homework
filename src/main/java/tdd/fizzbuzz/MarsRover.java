@@ -17,27 +17,17 @@ public class MarsRover {
         return direction;
     }
 
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
     public int getY() {
         return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public int getX() {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public MarsRover(int x, int y, String direction) {
+        this.x = x;
+        this.y = y;
         this.direction = direction;
     }
 
@@ -52,7 +42,6 @@ public class MarsRover {
         return switch (command) {
             case L_COMMAND -> this::turnLeft;
             case R_COMMAND -> this::turnRight;
-            case M_COMMAND -> this::moveForward;
             case B_COMMAND -> this::moveBackward;
             default -> this::moveForward;
         };
