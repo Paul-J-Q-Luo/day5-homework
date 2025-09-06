@@ -260,4 +260,82 @@ class MarsRoverTest {
         assertEquals(0, marsRover.getY());
         assertEquals("W", marsRover.getDirection());
     }
+
+    @Test
+    public void should_return_location_is_E_and_x_is_1_and_y_0_when_given_direction_is_N_and_batch_command_is_RM_and_x_is_0_and_y_is_0() {
+        String direction = "N";
+        String command = "RM";
+        int x = 0;
+        int y = 0;
+        MarsRover marsRover = new MarsRover(x, y, direction);
+
+        marsRover.executeCommand(command);
+
+        assertEquals(1, marsRover.getX());
+        assertEquals(0, marsRover.getY());
+        assertEquals("E", marsRover.getDirection());
+    }
+
+    @Test
+    public void should_return_location_is_W_and_x_is_1_and_y_0_when_given_direction_is_N_and_batch_command_is_LB_and_x_is_0_and_y_is_0() {
+        String direction = "N";
+        String command = "LB";
+        int x = 0;
+        int y = 0;
+        MarsRover marsRover = new MarsRover(x, y, direction);
+
+        marsRover.executeCommand(command);
+
+        assertEquals(1, marsRover.getX());
+        assertEquals(0, marsRover.getY());
+        assertEquals("W", marsRover.getDirection());
+    }
+
+    @Test
+    public void should_return_location_is_E_and_x_is_nav_1_and_y_0_when_given_direction_is_N_and_batch_command_is_RB_and_x_is_0_and_y_is_0() {
+        String direction = "N";
+        String command = "RB";
+        int x = 0;
+        int y = 0;
+        MarsRover marsRover = new MarsRover(x, y, direction);
+
+        marsRover.executeCommand(command);
+
+        assertEquals(-1, marsRover.getX());
+        assertEquals(0, marsRover.getY());
+        assertEquals("E", marsRover.getDirection());
+    }
+
+    @Test
+    public void should_turn_around_when_given_batch_command_is_LL() {
+        MarsRover marsRover = new MarsRover(0, 0, "N");
+
+        marsRover.executeCommand("LL");
+
+        assertEquals(0, marsRover.getX());
+        assertEquals(0, marsRover.getY());
+        assertEquals("S", marsRover.getDirection());
+    }
+
+    @Test
+    public void should_return_to_origin_when_given_batch_command_is_MRML() {
+        MarsRover marsRover = new MarsRover(0, 0, "N");
+
+        marsRover.executeCommand("MRML");
+
+        assertEquals(1, marsRover.getX());
+        assertEquals(1, marsRover.getY());
+        assertEquals("N", marsRover.getDirection());
+    }
+
+    @Test
+    public void should_stay_at_same_position_when_given_batch_command_is_MB() {
+        MarsRover marsRover = new MarsRover(0, 0, "N");
+
+        marsRover.executeCommand("MB");
+
+        assertEquals(0, marsRover.getX());
+        assertEquals(0, marsRover.getY());
+        assertEquals("N", marsRover.getDirection());
+    }
 }
