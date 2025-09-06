@@ -3,6 +3,8 @@ package tdd.fizzbuzz;
 public class MarsRover {
     public static final String L_COMMAND = "L";
     public static final String R_COMMAND = "R";
+    public static final String M_COMMAND = "M";
+    public static final String B_COMMAND = "B";
     public static final String NORTH = "N";
     public static final String WEST = "W";
     public static final String SOUTH = "S";
@@ -47,6 +49,8 @@ public class MarsRover {
         return switch (command) {
             case L_COMMAND -> this::turnLeft;
             case R_COMMAND -> this::turnRight;
+            case M_COMMAND -> this::moveForward;
+            case B_COMMAND -> this::moveBackward;
             default -> this::moveForward;
         };
     }
@@ -75,6 +79,12 @@ public class MarsRover {
             case EAST -> ++x;
             case SOUTH -> --y;
             default -> --x;
+        }
+    }
+
+    private void moveBackward() {
+        switch (direction) {
+            case NORTH -> --y;
         }
     }
 }
