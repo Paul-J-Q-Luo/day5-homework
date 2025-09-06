@@ -33,9 +33,9 @@ public class MarsRover {
 
     public void executeCommand(String command) {
         command.chars()
-               .mapToObj(c -> String.valueOf((char) c))
-               .map(this::createCommand)
-               .forEach(CommandExecutor::execute);
+                .mapToObj(c -> String.valueOf((char) c))
+                .map(this::createCommand)
+                .forEach(CommandExecutor::execute);
     }
 
     private CommandExecutor createCommand(String command) {
@@ -65,21 +65,20 @@ public class MarsRover {
         };
     }
 
-    private void moveForward() {
+    private void move(int step) {
         switch (direction) {
-            case NORTH -> ++y;
-            case EAST -> ++x;
-            case SOUTH -> --y;
-            default -> --x;
+            case NORTH -> y += step;
+            case EAST -> x += step;
+            case SOUTH -> y -= step;
+            case WEST -> x -= step;
         }
     }
 
+    private void moveForward() {
+        move(1);
+    }
+
     private void moveBackward() {
-        switch (direction) {
-            case NORTH -> --y;
-            case EAST -> --x;
-            case SOUTH -> ++y;
-            default -> ++x;
-        }
+        move(-1);
     }
 }
