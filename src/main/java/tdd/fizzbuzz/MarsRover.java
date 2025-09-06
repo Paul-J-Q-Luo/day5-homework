@@ -1,9 +1,18 @@
 package tdd.fizzbuzz;
 
+import java.util.Map;
+
 public class MarsRover {
     private int x;
     private int y;
     private Direction direction;
+
+    private static final Map<Command, Movement> commandMap = Map.of(
+            Command.LEFT, new TurnLeftCommand(),
+            Command.RIGHT, new TurnRightCommand(),
+            Command.MOVE, new MoveForwardCommand(),
+            Command.BACK, new MoveBackwardCommand()
+    );
 
     public String getDirection() {
         return direction.getCode();
@@ -27,20 +36,11 @@ public class MarsRover {
         command.chars()
                 .mapToObj(c -> String.valueOf((char) c))
                 .map(Command::fromCode)
-                .map(this::createCommand)
-                .forEach(CommandExecutor::execute);
+                .map(commandMap::get)
+                .forEach(movement -> movement.execute(this));
     }
 
-    private CommandExecutor createCommand(Command command) {
-        return switch (command) {
-            case LEFT -> this::turnLeft;
-            case RIGHT -> this::turnRight;
-            case BACK -> this::moveBackward;
-            case MOVE -> this::moveForward;
-        };
-    }
-
-    private void turnLeft() {
+    public void turnLeft() {
         direction = switch (direction) {
             case NORTH -> Direction.WEST;
             case SOUTH -> Direction.EAST;
@@ -49,13 +49,21 @@ public class MarsRover {
         };
     }
 
-    private void turnRight() {
+    public void turnRight() {
         direction = switch (direction) {
             case NORTH -> Direction.EAST;
             case SOUTH -> Direction.WEST;
             case EAST -> Direction.SOUTH;
             case WEST -> Direction.NORTH;
         };
+    }
+
+    public void moveForward() {
+        move(1);
+    }
+
+    public void moveBackward() {
+        move(-1);
     }
 
     private void move(int step) {
@@ -65,13 +73,5 @@ public class MarsRover {
             case SOUTH -> y -= step;
             case WEST -> x -= step;
         }
-    }
-
-    private void moveForward() {
-        move(1);
-    }
-
-    private void moveBackward() {
-        move(-1);
     }
 }
