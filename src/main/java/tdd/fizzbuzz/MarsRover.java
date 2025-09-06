@@ -1,10 +1,6 @@
 package tdd.fizzbuzz;
 
 public class MarsRover {
-    public static final String L_COMMAND = "L";
-    public static final String R_COMMAND = "R";
-    public static final String M_COMMAND = "M";
-    public static final String B_COMMAND = "B";
     public static final String NORTH = "N";
     public static final String WEST = "W";
     public static final String SOUTH = "S";
@@ -34,16 +30,17 @@ public class MarsRover {
     public void executeCommand(String command) {
         command.chars()
                 .mapToObj(c -> String.valueOf((char) c))
+                .map(Command::fromCode)
                 .map(this::createCommand)
                 .forEach(CommandExecutor::execute);
     }
 
-    private CommandExecutor createCommand(String command) {
+    private CommandExecutor createCommand(Command command) {
         return switch (command) {
-            case L_COMMAND -> this::turnLeft;
-            case R_COMMAND -> this::turnRight;
-            case B_COMMAND -> this::moveBackward;
-            default -> this::moveForward;
+            case LEFT -> this::turnLeft;
+            case RIGHT -> this::turnRight;
+            case BACK -> this::moveBackward;
+            case MOVE -> this::moveForward;
         };
     }
 
