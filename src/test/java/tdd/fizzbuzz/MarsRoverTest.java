@@ -245,4 +245,19 @@ class MarsRoverTest {
         assertEquals(0, marsRover.getY());
         assertEquals("W", marsRover.getDirection());
     }
+
+    @Test
+    public void should_return_location_is_W_and_x_is_nav_1_and_y_0_when_given_direction_is_N_and_batch_command_is_LM_and_x_is_0_and_y_is_0() {
+        String direction = "N";
+        String command = "LM";
+        int x = 0;
+        int y = 0;
+        MarsRover marsRover = new MarsRover(x, y, direction);
+
+        marsRover.executeCommand(command);
+
+        assertEquals(-1, marsRover.getX());
+        assertEquals(0, marsRover.getY());
+        assertEquals("W", marsRover.getDirection());
+    }
 }
