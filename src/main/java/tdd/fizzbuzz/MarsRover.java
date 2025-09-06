@@ -1,16 +1,12 @@
 package tdd.fizzbuzz;
 
 public class MarsRover {
-    public static final String NORTH = "N";
-    public static final String WEST = "W";
-    public static final String SOUTH = "S";
-    public static final String EAST = "E";
     private int x;
     private int y;
-    private String direction;
+    private Direction direction;
 
     public String getDirection() {
-        return direction;
+        return direction.getCode();
     }
 
     public int getY() {
@@ -24,7 +20,7 @@ public class MarsRover {
     public MarsRover(int x, int y, String direction) {
         this.x = x;
         this.y = y;
-        this.direction = direction;
+        this.direction = Direction.fromCode(direction);
     }
 
     public void executeCommand(String command) {
@@ -46,19 +42,19 @@ public class MarsRover {
 
     private void turnLeft() {
         direction = switch (direction) {
-            case NORTH -> WEST;
-            case SOUTH -> EAST;
-            case EAST -> NORTH;
-            default -> SOUTH;
+            case NORTH -> Direction.WEST;
+            case SOUTH -> Direction.EAST;
+            case EAST -> Direction.NORTH;
+            case WEST -> Direction.SOUTH;
         };
     }
 
     private void turnRight() {
         direction = switch (direction) {
-            case NORTH -> EAST;
-            case SOUTH -> WEST;
-            case EAST -> SOUTH;
-            default -> NORTH;
+            case NORTH -> Direction.EAST;
+            case SOUTH -> Direction.WEST;
+            case EAST -> Direction.SOUTH;
+            case WEST -> Direction.NORTH;
         };
     }
 
