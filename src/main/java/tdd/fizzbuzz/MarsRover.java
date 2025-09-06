@@ -86,6 +86,7 @@ public class MarsRover {
         switch (direction) {
             case NORTH -> --y;
             case EAST -> --x;
+            case SOUTH -> ++y;
         }
     }
 }
