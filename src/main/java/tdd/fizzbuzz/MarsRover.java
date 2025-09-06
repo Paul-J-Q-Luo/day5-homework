@@ -42,7 +42,9 @@ public class MarsRover {
     }
 
     public void executeCommand(String command) {
-        createCommand(command).execute();
+        for (char cmd : command.toCharArray()) {
+            createCommand(String.valueOf(cmd)).execute();
+        }
     }
 
     private CommandExecutor createCommand(String command) {
