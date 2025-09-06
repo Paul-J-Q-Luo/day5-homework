@@ -85,6 +85,7 @@ public class MarsRover {
     private void moveBackward() {
         switch (direction) {
             case NORTH -> --y;
+            case EAST -> --x;
         }
     }
 }
